@@ -21,8 +21,8 @@ export default function (plop) {
             if (data.modelName) {
                 actions.push({
                     type: 'add',
-                    path: `./src/plop/models/{{modelName}}.model.ts`,
-                    templateFile: './src/plop/plop-templates/model.hbs',
+                    path: `./plop/models/{{modelName}}.model.ts`,
+                    templateFile: './plop/plop-templates/model.hbs',
                 });
             }
             return actions;
@@ -110,7 +110,7 @@ export default function (plop) {
         ],
         actions: function (data) {
             const actions = [];
-            const modelsFolderPath = './src/plop/models';
+            const modelsFolderPath = './plop/models';
             const files = fs.readdirSync(modelsFolderPath);
             if (files.length === 1) {
                 const file = files[0];
@@ -143,7 +143,7 @@ export default function (plop) {
                 console.log('Field added successfully.');
             } else {
                 console.error(
-                    'Error: There should be exactly one file in the models folder.',
+                    'Error: There should be exactly one file in the models folder please create a model .',
                 );
             }
             return actions;
@@ -155,7 +155,7 @@ export default function (plop) {
         prompts: [],
         actions: function () {
             const actions = [];
-            const sourceFolder = './src/plop/models';
+            const sourceFolder = './plop/models';
             const destinationFolder = './src/model';
             const files = fs.readdirSync(sourceFolder);
             files.forEach((file) => {
