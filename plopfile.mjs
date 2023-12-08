@@ -30,7 +30,8 @@ export default function (plop) {
     });
 
     plop.setGenerator('key', {
-        description: 'Generate a new Sequelize model',
+        description:
+            'If you first  model generate command run after Generate Sequelize model KEY',
         prompts: [
             {
                 type: 'input',
@@ -67,8 +68,26 @@ export default function (plop) {
                 type: 'list',
                 name: 'constraintType',
                 message: 'Choose the constraint type:',
-                choices: ['allowNull: true', 'allowNull: false'],
+                choices: [
+                    'allowNull: false',
+                    'allowNull: true',
+                    'unique: true',
+                ],
                 when: (answers) => answers.constrant,
+            },
+            {
+                type: 'confirm',
+                name: 'constrant_two',
+                message: 'Do you want to add one more Constrant?',
+                default: true,
+                when: (answers) => answers.constraintType === 'unique: true',
+            },
+            {
+                type: 'list',
+                name: 'constraintTypeTWO',
+                message: 'Choose the constraint type:',
+                choices: ['allowNull: false', 'allowNull: true'],
+                when: (answers) => answers.constrant_two,
             },
             {
                 type: 'confirm',
@@ -101,6 +120,7 @@ export default function (plop) {
                  ${data.key}: {
                       type: DataTypes.${data.type},
                       ${data.constrant ? `${data.constraintType},` : ''}
+                      ${data.constrant_two ? `${data.constraintTypeTWO},` : ''}
                       ${
                           data.refernceKey
                               ? ` references:{  
