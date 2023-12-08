@@ -1,0 +1,8 @@
+import { DataTypes } from 'sequelize'; export const
+{{modelname}}
+= (sequelize) => { const
+{{modelname}}
+= sequelize.define('{{modelname}}', { id: { type: DataTypes.UUID, allowNull:
+false, defaultValue: DataTypes.UUIDV4, primaryKey: true, }, }); return
+{{modelname}}
+}
